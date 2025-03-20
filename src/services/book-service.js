@@ -3,9 +3,9 @@ class BookService {
     static URL_Base = "https://gutendex.com/books/";
 
 
-    constructor(currentPage = 1, ) {
+    constructor(currentPage = 1,) {
         this.currentPage = currentPage;
-        
+
 
 
     }
@@ -21,10 +21,14 @@ class BookService {
 
 
 
+
     }
 
-    getBookById() {
-
+    async getBookById(id) {
+        const url = BookService.URL_Base + id + '/';
+        console.log("URL generato:", url);
+        const res = await fetch(url);
+        return await res.json();
     }
 
     getNextPage() {

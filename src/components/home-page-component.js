@@ -1,10 +1,12 @@
 import BookCardComponent from "./book-card-component";
 
 export default class HomePageComponet {
-    constructor(bookService) {
+    constructor(bookService, DetailPageComponent) {
         this.bookService = bookService
+        
         this.books = [];
     }
+
 
     async start() {
         const nextButton = document.getElementById("next-btn");
@@ -16,6 +18,7 @@ export default class HomePageComponet {
         this.books = await this.bookService.getBooksByPage();
 
         this.render();
+console.log(this.books);
 
     }
 
@@ -28,6 +31,7 @@ export default class HomePageComponet {
                 title: book.title,
                 author: book.authors[0],
                 imgUrl: book.formats['image/jpeg'],
+                id: book.id
             }
             const bookCard = new BookCardComponent(bookInfo);
             const card = bookCard.createBookCardHtml();
@@ -42,7 +46,7 @@ export default class HomePageComponet {
     }
 
     async onPrevClick(){
-        this.books =await this.bookService.getPrevPage();
+        this.books = await this.bookService.getPrevPage();
         this.render();
     }
 
