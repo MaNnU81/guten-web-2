@@ -28,12 +28,15 @@ class BookService {
     }
 
     getNextPage() {
+
+        //controllare che non sia minore di zero
         this.currentPage++
         return this.getBooksByPage();
 
     }
 
     getPrevPage() {
+        //controllare che non sia maggiore dell'ultima pagina
         this.currentPage--
         return this.getBooksByPage();
     }
