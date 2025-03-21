@@ -1,9 +1,10 @@
 import BookCardComponent from "./book-card-component";
+import StorageService from "../services/storage-service";
 
 export default class HomePageComponet {
-    constructor(bookService, DetailPageComponent) {
+    constructor(bookService, storageService) {
         this.bookService = bookService
-        
+        this.storageService = storageService
         this.books = [];
     }
 
@@ -33,9 +34,9 @@ console.log(this.books);
                 imgUrl: book.formats['image/jpeg'],
                 id: book.id
             }
-            const bookCard = new BookCardComponent(bookInfo);
+            const bookCard = new BookCardComponent(bookInfo, this.storageService);
             const card = bookCard.createBookCardHtml();
-            mainContainer.appendChild(card);
+            // mainContainer.appendChild(card);
 
         }
     }
