@@ -11,15 +11,15 @@ export default class HomePageComponet {
 
     async start() {
         const nextButton = document.getElementById("next-btn");
-        nextButton.addEventListener('click', () => this.onNextClick ());
+        nextButton.addEventListener('click', () => this.onNextClick());
 
         const previousButton = document.getElementById("prev-btn");
-        previousButton.addEventListener('click', () => this.onPrevClick ());
+        previousButton.addEventListener('click', () => this.onPrevClick());
 
         this.books = await this.bookService.getBooksByPage();
 
         this.render();
-console.log(this.books);
+        console.log(this.books);
 
     }
 
@@ -36,17 +36,17 @@ console.log(this.books);
             }
             const bookCard = new BookCardComponent(bookInfo, this.storageService);
             const card = bookCard.createBookCardHtml();
-            // mainContainer.appendChild(card);
+            mainContainer.appendChild(card);
 
         }
     }
 
-    async onNextClick(){
+    async onNextClick() {
         this.books = await this.bookService.getNextPage();
         this.render();
     }
 
-    async onPrevClick(){
+    async onPrevClick() {
         this.books = await this.bookService.getPrevPage();
         this.render();
     }
